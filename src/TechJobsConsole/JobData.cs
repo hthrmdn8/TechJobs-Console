@@ -6,6 +6,7 @@ using System.Text;
 namespace TechJobsConsole
 {
     class JobData
+        //Create a new dictionary
     {
         static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
         static bool IsDataLoaded = false;
@@ -18,13 +19,18 @@ namespace TechJobsConsole
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
+                
             {
+            bool found = false; 
                 foreach (KeyValuePair<string, string> item in row)
                 {
 
                     if (item.Value.ToLower().Contains(value.ToLower()))
                     {
                         jobs.Add(row);
+                        found = true;
+                        break;
+
                     }
                 }
 
