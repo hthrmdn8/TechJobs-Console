@@ -51,37 +51,35 @@ namespace TechJobsConsole
                 }
                 else // choice is "search"
                 {
-                     
-                        // How does the user want to search (e.g. by skill or employer)
+
+                    // How does the user want to search (e.g. by skill or employer)
                     string columnChoice = GetUserSelection("Search", columnChoices);
-                      // What is their search term?
-                        Console.WriteLine("\nSearch term: ");
-                        string searchTerm = Console.ReadLine();
+                    // What is their search term?
+                    Console.WriteLine("\nSearch term: ");
+                    string searchTerm = Console.ReadLine();
 
-                        List<Dictionary<string, string>> searchResults;
+                    List<Dictionary<string, string>> searchResults;
 
-                        // Fetch results
-                        if (columnChoice.Equals("all"))
-                        {
-                            searchResults = JobData.FindByValue(columnChoice, searchTerm);
-                            PrintJobs(searchResults);
-                        }
-                        else
-                        {
-                            searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-                            PrintJobs(searchResults);
-                        }
-                    
+                    if (columnChoice.Equals("all"))
+                    {
+                        searchResults = JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
+                    }
+                    else
+                    {
+                        searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        PrintJobs(searchResults);
+                    }
                 }
             }
         }
-        
+
 
 
 
         /*
-         * Returns the key of the selected item from the choices Dictionary
-         */
+            * Returns the key of the selected item from the choices Dictionary
+            */
         private static string GetUserSelection(string choiceHeader, Dictionary<string, string> choices)
         {
             int choiceIdx;
@@ -125,11 +123,12 @@ namespace TechJobsConsole
         {
             foreach (Dictionary<string, string> jobs in someJobs)
             {
-                foreach(KeyValuePair<string, string> job in jobs)
+                foreach (KeyValuePair<string, string> job in jobs)
                 {
                     Console.WriteLine("{0} {1}", job.Key, job.Value);
                 }
             }
         }
     }
+
 }
